@@ -68,27 +68,27 @@ function updateLocalPID(data){
 	Kp = parseInt(data.slice(data.search("d")+1));
 }
 </script>
-<center><button name='com' value='f' style="width: 200px; height:150px;" 	ontouchstart ="{touch = true; interval = setInterval(forward, duration);}"
+<center><button name='com' value='f' style="width: 200px; height:100px;" 	ontouchstart ="{touch = true; interval = setInterval(forward, duration);}"
 														ontouchend = "{touch = false; clearInterval(interval); stop();}"
 														onmousedown ="{if(!touch) interval = setInterval(forward, duration);}"
 														onmouseup = "{clearInterval(interval); stop();}"
 														
 				>Forward</button><br><br>
 
-<button name='com' value='l' style="width: 200px; height:150px; margin-right: 30px;" 	ontouchstart ="{touch = true; interval = setInterval(left, duration);}"
+<button name='com' value='l' style="width: 200px; height:100px; margin-right: 30px;" 	ontouchstart ="{touch = true; interval = setInterval(left, duration);}"
 																	ontouchend = "{touch = false; clearInterval(interval); stop();}"
 																	onmousedown ="{if(!touch) interval = setInterval(left, duration);}"
 																	onmouseup = "{clearInterval(interval); stop();}"
 				>Left</button>
 
 				
-<button name='com' value='r' style="width: 200px; height:150px; margin-left: 30px;" 		ontouchstart ="{touch = true; interval = setInterval(right, duration);}"
+<button name='com' value='r' style="width: 200px; height:100px; margin-left: 30px;" 		ontouchstart ="{touch = true; interval = setInterval(right, duration);}"
 																	ontouchend = "{touch = false; clearInterval(interval); stop();}"
 																	onmousedown ="{if(!touch) interval = setInterval(right, duration);}"
 																	onmouseup = "{clearInterval(interval); stop();}"
 				>Right</button><br><br>
 				
-<button name='com' value='b' style="width: 200px; height:150px;" 						ontouchstart ="{touch = true; interval = setInterval(backward, duration);}"
+<button name='com' value='b' style="width: 200px; height:100px;" 						ontouchstart ="{touch = true; interval = setInterval(backward, duration);}"
 																	ontouchend = "{touch = false; clearInterval(interval); stop();}"
 																	onmousedown ="{if(!touch) interval = setInterval(backward, duration);}"
 																	onmouseup = "{clearInterval(interval); stop();}"

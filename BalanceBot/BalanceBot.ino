@@ -68,7 +68,7 @@ Motion motion(&lm, &rm);    //Motion object using two motors
 //################################################
 int Kp = 100;
 int Ki = 0;
-int Kd = 200;
+int Kd = 300;
 float K = 1;
 float P;
 float I, iError;
@@ -171,7 +171,7 @@ void setup() {
   Serial.println(F("Communication to ESP istablished"));
   //send PID values to webserver in ESP
   Serial.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
-  esp.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
+//  esp.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
   Serial.println(F("PID is sent to webserver"));
 }
 
@@ -264,7 +264,7 @@ void checkCommand(){
     break;
     }
   //send back stored PID values to webserver, acts kind of Ack.
-  esp.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
+//  esp.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
   }
 }
 
@@ -334,7 +334,7 @@ void loop() {
   
   getDMPdata();
   SerialOutALL();
-//  checkCommand();
+  checkCommand();
   motionControl();
   checkSerialPid();
 
