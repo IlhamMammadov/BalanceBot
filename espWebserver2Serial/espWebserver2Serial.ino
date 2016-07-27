@@ -20,113 +20,113 @@ void handleRoot() {
   
   //Webpage html code:
   
-  String webpage = "<html>\
-<body>\
-<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\
-<script type=\"text/javascript\">\
-var interval;\
-var duration = 200;\
-var touch = false;\
-var Kp = "  + String(Kp)+ ";\
-var Ki = "  + String(Ki)+ ";\
-var Kd = "  + String(Kd)+ ";\
-\
-window.onload = function() {\
-  document.getElementById('Kp_value').value = Kp;\
-  document.getElementById('Kp_slider').value = Kp;\
-  document.getElementById('Ki_value').value = Ki;\
-  document.getElementById('Ki_slider').value = Ki;\
-  document.getElementById('Kd_value').value = Kd;\
-  document.getElementById('Kd_slider').value = Kd;\
-};\
-\
-\
-function forward(){\
-  document.getElementById(\"command\").innerHTML = \"Forward\";\
-  $.post(\"http://esp001/com\",{com:'f'});\
-}\
-function backward(){\
-  document.getElementById(\"command\").innerHTML = \"Backward\";\
-  $.post(\"http://esp001/com\",{com:'b'});\
-}\
-function left(){\
-  document.getElementById(\"command\").innerHTML = \"Left\";\
-  $.post(\"http://esp001/com\",{com:'l'});\
-}\
-function right(){\
-  document.getElementById(\"command\").innerHTML = \"Right\";\
-  $.post(\"http://esp001/com\",{com:'r'});\
-}\
-function stop(){\
-  document.getElementById(\"command\").innerHTML = \"Stop\";\
-  $.post(\"http://esp001/com\",{com:'s'});\
-}\
-function showKp(val){\
-  Kp = val;\
-  document.getElementById('Kp_value').value=Kp;\
-  document.getElementById('Kp_slider').value=Kp;\
-}\
-function showKi(val){\
-  Ki = val;\
-  document.getElementById('Ki_value').value=Ki;\
-  document.getElementById('Ki_slider').value=Ki;\
-}\
-function showKd(val){\
-  Kd = val;\
-  document.getElementById('Kd_value').value=Kd;\
-  document.getElementById('Kd_slider').value=Kd;\
-}\
-function updatePID(){\
-  var command = \"p\"+Kp+\"i\"+Ki+\"d\"+Kd;\
-  $.post(\"http://esp001/com\",{com:command}, \
-  function(data, status){\
-        updateLocalPID(data);\
-        });\
-}\
-function updateLocalPID(data){\
-  Kp = parseInt(data.slice(data.search(\"p\")+1,data.search(\"i\")));\
-  Ki = parseInt(data.slice(data.search(\"i\")+1,data.search(\"d\")));\
-  Kd = parseInt(data.slice(data.search(\"d\")+1));\
-  alert(\"PID updated:  Kp: \" + String(Kp) + \"  Ki: \" + String(Ki) + \"  Kd: \" + String(Kd) + \"  !\");\
-}\
-</script>\
-<center><button name='com' value='f' style=\"width: 200px; height:100px;\"  ontouchstart =\"{touch = true; interval = setInterval(forward, duration);}\"\
-                            ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\
-                            onmousedown =\"{if(!touch) interval = setInterval(forward, duration);}\"\
-                            onmouseup = \"{clearInterval(interval); stop();}\"\
-\
-        >Forward</button><br><br>\
-\
-<button name='com' value='l' style=\"width: 200px; height:100px; margin-right: 30px;\"  ontouchstart =\"{touch = true; interval = setInterval(left, duration);}\"\
-                                  ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\
-                                  onmousedown =\"{if(!touch) interval = setInterval(left, duration);}\"\
-                                  onmouseup = \"{clearInterval(interval); stop();}\"\
-        >Left</button>\
-\       
-<button name='com' value='r' style=\"width: 200px; height:100px; margin-left: 30px;\"     ontouchstart =\"{touch = true; interval = setInterval(right, duration);}\"\
-                                  ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\
-                                  onmousedown =\"{if(!touch) interval = setInterval(right, duration);}\"\
-                                  onmouseup = \"{clearInterval(interval); stop();}\"\
-        >Right</button><br><br>\
-\
-<button name='com' value='b' style=\"width: 200px; height:100px;\"            ontouchstart =\"{touch = true; interval = setInterval(backward, duration);}\"\
-                                  ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\
-                                  onmousedown =\"{if(!touch) interval = setInterval(backward, duration);}\"\
-                                  onmouseup = \"{clearInterval(interval); stop();}\"\
-        >Backward</button><br>\
-\
-<p id=\"LastCommand\"> Last command:</p> <p id=\"command\">Stop</p><br>\
-\
-Kp  : <input type=\"range\" id=\"Kp_slider\" min=\"0\" max=\"1000\" step=\"1\" onchange=\"showKp(this.value);\">\
-<input type=\"text\" id=\"Kp_value\" style=\"width:50px\" onchange=\"showKp(this.value);\">\
-Ki  : <input type=\"range\" id=\"Ki_slider\" min=\"0\" max=\"1000\" step=\"1\" onchange=\"showKi(this.value);\">\
-<input type=\"text\" id=\"Ki_value\" style=\"width:50px\" onchange=\"showKi(this.value);\">\
-Kd  : <input type=\"range\" id=\"Kd_slider\" min=\"0\" max=\"1000\" step=\"1\" onchange=\"showKd(this.value);\">\
-<input type=\"text\" id=\"Kd_value\" style=\"width:50px\" onchange=\"showKd(this.value);\"><br><br>\
-\
-<button  style=\"width: 200px; height:100px;\"  onclick =\"updatePID();\">Update</button><br>\
-\
-</body>\
+  String webpage = "<html>\n\
+<body>\n\
+<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\n\
+<script type=\"text/javascript\">\n\
+var interval;\n\
+var duration = 100;\n\
+var touch = false;\n\
+var Kp = "  + String(Kp)+ ";\n\
+var Ki = "  + String(Ki)+ ";\n\
+var Kd = "  + String(Kd)+ ";\n\
+\n\
+window.onload = function() {\n\
+  document.getElementById('Kp_value').value = Kp;\n\
+  document.getElementById('Kp_slider').value = Kp;\n\
+  document.getElementById('Ki_value').value = Ki;\n\
+  document.getElementById('Ki_slider').value = Ki;\n\
+  document.getElementById('Kd_value').value = Kd;\n\
+  document.getElementById('Kd_slider').value = Kd;\n\
+};\n\
+\n\
+\n\
+function forward(){\n\
+  document.getElementById(\"command\").innerHTML = \"Forward\";\n\
+  $.post(\"http://esp001/com\",{com:'f'});\n\
+}\n\
+function backward(){\n\
+  document.getElementById(\"command\").innerHTML = \"Backward\";\n\
+  $.post(\"http://esp001/com\",{com:'b'});\n\
+}\n\
+function left(){\n\
+  document.getElementById(\"command\").innerHTML = \"Left\";\n\
+  $.post(\"http://esp001/com\",{com:'l'});\n\
+}\n\
+function right(){\n\
+  document.getElementById(\"command\").innerHTML = \"Right\";\n\
+  $.post(\"http://esp001/com\",{com:'r'});\n\
+}\n\
+function stop(){\n\
+  document.getElementById(\"command\").innerHTML = \"Stop\";\n\
+  $.post(\"http://esp001/com\",{com:'s'});\n\
+}\n\
+function showKp(val){\n\
+  Kp = val;\n\
+  document.getElementById('Kp_value').value=Kp;\n\
+  document.getElementById('Kp_slider').value=Kp;\n\
+}\n\
+function showKi(val){\n\
+  Ki = val;\n\
+  document.getElementById('Ki_value').value=Ki;\n\
+  document.getElementById('Ki_slider').value=Ki;\n\
+}\n\
+function showKd(val){\n\
+  Kd = val;\n\
+  document.getElementById('Kd_value').value=Kd;\n\
+  document.getElementById('Kd_slider').value=Kd;\n\
+}\n\
+function updatePID(){\n\
+  var command = \"p\"+Kp+\"i\"+Ki+\"d\"+Kd;\n\
+  $.post(\"http://esp001/com\",{com:command},\n\
+  function(data, status){\n\
+        updateLocalPID(data);\n\
+        });\n\
+}\n\
+function updateLocalPID(data){\n\
+  Kp = parseInt(data.slice(data.search(\"p\")+1,data.search(\"i\")));\n\
+  Ki = parseInt(data.slice(data.search(\"i\")+1,data.search(\"d\")));\n\
+  Kd = parseInt(data.slice(data.search(\"d\")+1));\n\
+  alert(\"PID updated:  Kp: \" + String(Kp) + \"  Ki: \" + String(Ki) + \"  Kd: \" + String(Kd) + \"  !\");\n\
+}\n\
+</script>\n\
+<center><button name='com' value='f' style=\"width: 200px; height:100px;\"  ontouchstart =\"{touch = true; interval = setInterval(forward, duration);}\"\n\
+                            ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\n\
+                            onmousedown =\"{if(!touch) interval = setInterval(forward, duration);}\"\n\
+                            onmouseup = \"{clearInterval(interval); stop();}\"\n\
+\n\
+        >Forward</button><br><br>\n\
+\n\
+<button name='com' value='l' style=\"width: 200px; height:100px; margin-right: 30px;\"  ontouchstart =\"{touch = true; interval = setInterval(left, duration);}\"\n\
+                                  ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\n\
+                                  onmousedown =\"{if(!touch) interval = setInterval(left, duration);}\"\n\
+                                  onmouseup = \"{clearInterval(interval); stop();}\"\n\
+        >Left</button>\n\
+\n\
+<button name='com' value='r' style=\"width: 200px; height:100px; margin-left: 30px;\"     ontouchstart =\"{touch = true; interval = setInterval(right, duration);}\"\n\
+                                  ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\n\
+                                  onmousedown =\"{if(!touch) interval = setInterval(right, duration);}\"\n\
+                                  onmouseup = \"{clearInterval(interval); stop();}\"\n\
+        >Right</button><br><br>\n\
+\n\
+<button name='com' value='b' style=\"width: 200px; height:100px;\"            ontouchstart =\"{touch = true; interval = setInterval(backward, duration);}\"\n\
+                                  ontouchend = \"{touch = false; clearInterval(interval); stop();}\"\n\
+                                  onmousedown =\"{if(!touch) interval = setInterval(backward, duration);}\"\n\
+                                  onmouseup = \"{clearInterval(interval); stop();}\"\n\
+        >Backward</button><br>\n\
+\n\
+<p id=\"LastCommand\"> Last command:</p> <p id=\"command\">Stop</p><br>\n\
+\n\
+Kp  : <input type=\"range\" id=\"Kp_slider\" min=\"0\" max=\"1000\" step=\"1\" onchange=\"showKp(this.value);\">\n\
+<input type=\"text\" id=\"Kp_value\" style=\"width:50px\" onchange=\"showKp(this.value);\">\n\
+Ki  : <input type=\"range\" id=\"Ki_slider\" min=\"0\" max=\"1000\" step=\"1\" onchange=\"showKi(this.value);\">\n\
+<input type=\"text\" id=\"Ki_value\" style=\"width:50px\" onchange=\"showKi(this.value);\">\n\
+Kd  : <input type=\"range\" id=\"Kd_slider\" min=\"0\" max=\"1000\" step=\"1\" onchange=\"showKd(this.value);\">\n\
+<input type=\"text\" id=\"Kd_value\" style=\"width:50px\" onchange=\"showKd(this.value);\"><br><br>\n\
+\n\
+<button  style=\"width: 200px; height:100px;\"  onclick =\"updatePID();\">Update</button><br>\n\
+\n\
+</body>\n\
 </html>";
 
 
