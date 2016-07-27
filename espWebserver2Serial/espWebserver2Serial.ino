@@ -25,7 +25,7 @@ void handleRoot() {
 <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\n\
 <script type=\"text/javascript\">\n\
 var interval;\n\
-var duration = 100;\n\
+var duration = 150;\n\
 var touch = false;\n\
 var Kp = "  + String(Kp)+ ";\n\
 var Ki = "  + String(Ki)+ ";\n\
@@ -138,7 +138,7 @@ void handleCOM() {
   digitalWrite(led, 1);
   //send on serial when command from button press is available
   String request =  server.arg("com");
-  Serial.println(request);
+  Serial.print(request);
 
   //Parse request to save locally
   Kp = request.substring(request.indexOf('p')+1,request.indexOf('i')).toInt();
