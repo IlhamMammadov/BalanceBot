@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 var interval;
-var duration = 100;
+var duration = 200;
 var touch = false;
 var Kp = 10;
 var Ki = 10;
@@ -63,9 +63,10 @@ function updatePID(){
 				});
 }
 function updateLocalPID(data){
-	Kp = parseInt(data.slice(data.search("p")+1,data.search("p")));
+	Kp = parseInt(data.slice(data.search("p")+1,data.search("i")));
 	Ki = parseInt(data.slice(data.search("i")+1,data.search("d")));
 	Kp = parseInt(data.slice(data.search("d")+1));
+	alert("PID updated:		Kp: " + String(Kp) + "	Ki: " + String(Ki) + "	Kd: " + String(Kd) + "  !");
 }
 </script>
 <center><button name='com' value='f' style="width: 200px; height:100px;" 	ontouchstart ="{touch = true; interval = setInterval(forward, duration);}"
