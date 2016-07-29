@@ -141,6 +141,7 @@ void setupDMP(){
 
 void setup() {
 
+  delay(2000);
   //Serial for debugging
   Serial.begin(115200);
   
@@ -167,12 +168,12 @@ void setup() {
   //################################################
   //Communication
   //################################################
-  esp.begin(115200);
+  esp.begin(38400);
   Serial.println(F("Communication to ESP istablished"));
   //send PID values to webserver in ESP
   Serial.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
 //  esp.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd));
-  Serial.println(F("PID is sent to webserver"));
+//  Serial.println(F("PID is sent to webserver"));
 }
 
 
@@ -253,14 +254,21 @@ void checkCommand(){
     case 's':
     motion.Stop();
     break;
+    
     //PID part
     case 'p':
-    Kp = esp.parseInt();
-    esp.read();            //read 'i'
-    Ki = esp.parseInt();
-    esp.read();            //read 'd'
-    Kd = esp.parseInt();
-    Serial.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd)); //debugging esp received data
+    //read all data into string and then parse info:
+    String pid_val = String();
+    while(esp.available()){
+      pid_val += (char)esp.read();
+    }
+//    Serial.print("pid_val:");
+//    Serial.println(pid_val);
+    Kp = pid_val.substring(0,pid_val.indexOf("i")).toInt();
+    Ki = pid_val.substring(pid_val.indexOf("i")+1,pid_val.indexOf("d")).toInt();
+    Kd = pid_val.substring(pid_val.indexOf("d")+1).toInt();
+    
+//    Serial.println("p"+String(Kp)+"i"+String(Ki)+"d"+String(Kd)); //debugging esp received data
     break;
     }
   //send back stored PID values to webserver, acts kind of Ack.

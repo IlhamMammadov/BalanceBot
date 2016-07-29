@@ -180,7 +180,7 @@ void setup(void){
   
   //#################################
   //Initialize communication with arduino and get PID values
-  Serial.begin(115200);
+  Serial.begin(38400);
 //  while(!Serial.available()) {Serial.println("."); delay(500);}   //waiting for data from arduino
 //  delay(1000);
 //  while(Serial.available()){
